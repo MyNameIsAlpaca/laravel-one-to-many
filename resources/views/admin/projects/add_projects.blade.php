@@ -57,10 +57,10 @@
 
     <div class="mb-3">
       <label for="type_id">Tipo di progetto</label>
-      <select class="form-select" name="type_id" id="type_id">
+      <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
         <option value="">Scegli</option>
         @foreach ($types as $type)
-            <option value="{{$type->id}}">{{$type->name}}</option>
+            <option value="{{$type->id}}" {{$type->id == old('type_id') ? 'selected' : ''}}>{{$type->name}}</option>
         @endforeach
       </select>
     </div>
