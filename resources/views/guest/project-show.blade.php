@@ -26,6 +26,10 @@
               <th>Data di pubblicazione:</th>
               <td>{{ $project->publication_date }}</td>
           </tr>
+          <tr>
+            <th>Tipo di progetto:</th>
+            <td>{{ $project->type->name }}</td>
+        </tr>
       </tbody>
   </table>
 </div>

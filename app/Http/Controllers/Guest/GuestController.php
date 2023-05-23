@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Models\Type;
 
 class GuestController extends Controller
 {
@@ -49,8 +50,9 @@ class GuestController extends Controller
      */
     public function show($slug)
     {
+        $type = Type::all();
         $project = Project::where('slug', $slug)->firstOrFail();
-        return view('guest.project-show', compact('project'));
+        return view('guest.project-show', compact('project', 'type'));
     }
 
     /**

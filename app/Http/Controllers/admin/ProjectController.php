@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -29,7 +30,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.add_projects');
+
+        $types = Type::all();
+        return view('admin.projects.add_projects', compact('types'));
     }
 
     /**
@@ -52,6 +55,8 @@ class ProjectController extends Controller
         $newProject->language = $data['language'];
         $newProject->link = $data['link'];
         $newProject->publication_date = $data['publication_date'];
+        $newProject->type_id = $data['type_id'];
+
         $newProject->slug = Str::slug($newProject->name, '-');
 
         $newProject->save();
@@ -124,6 +129,7 @@ class ProjectController extends Controller
             'language' => 'required|max:30',
             'publication_date' => 'required',
             'link' => 'required|max:255',
+            'type_id' => 'nullable'
         ], [
             'name.required' => 'Il nome è necessario',
             'name.max' => 'Il nome non può essere più lungo di 100 caratteri',

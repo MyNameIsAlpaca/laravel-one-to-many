@@ -54,6 +54,16 @@
           </div>
         @enderror
     </div>
+
+    <div class="mb-3">
+      <label for="type_id">Tipo di progetto</label>
+      <select class="form-select" name="type_id" id="type_id">
+        <option value="">Scegli</option>
+        @foreach ($types as $type)
+            <option value="{{$type->id}}">{{$type->name}}</option>
+        @endforeach
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary">Aggiungi</button>
     </form>
   </div>
