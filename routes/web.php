@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
         'create' => 'admin.projects.create',
         'store' => 'admin.projects.store',
         'show' => 'admin.projects.show',
+    ]);
+    Route::resource('types', TypeController::class)->names([
+        'index' => 'admin.types.index',
+        'create' => 'admin.types.create',
+        'store' => 'admin.types.store',
+        'show' => 'admin.types.show',
     ]);
     Route::get('/', [AdminController::class, 'home']);
 });
